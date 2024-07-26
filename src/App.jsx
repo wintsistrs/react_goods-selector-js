@@ -16,13 +16,16 @@ export const goods = [
 ];
 
 export const App = () => {
-  const [title, setTitle] = useState('Jam is selected');
+  let goodsTitle = 'Jam is selected';
   const [selectedGood, setSelectedGood] = useState('Jam');
+
+  goodsTitle =
+    selectedGood === null ? 'No goods selected' : `${selectedGood} is selected`;
 
   return (
     <main className="section container">
       <h1 className="title is-flex is-align-items-center">
-        {title}
+        {goodsTitle}
         {selectedGood !== null && (
           <button
             data-cy="ClearButton"
@@ -30,7 +33,6 @@ export const App = () => {
             className="delete ml-3"
             onClick={() => {
               setSelectedGood(null);
-              setTitle('No goods selected');
             }}
           />
         )}
@@ -53,7 +55,6 @@ export const App = () => {
                     className="button is-info"
                     onClick={() => {
                       setSelectedGood(null);
-                      setTitle('No goods selected');
                     }}
                   >
                     -
@@ -64,7 +65,6 @@ export const App = () => {
                     type="button"
                     className="button"
                     onClick={() => {
-                      setTitle(`${good} is selected`);
                       setSelectedGood(good);
                     }}
                   >
